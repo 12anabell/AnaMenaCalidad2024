@@ -12,7 +12,22 @@ class LoginServiceTest {
 		IDAOUser dao;
 	
 	@Test
-	void logintest() {
+	void loginusuarioinexistentetest() {
+		/*Inicialización*/
+		dao = mock(IDAOUser.class);
+		service =  new LoginService (dao);
+		//User usuario = new User("nombre1", "email@email.com", "123456");
+		when(dao.findByUserName("nombre1")).thenReturn(null);
+		
+		/*Ejercicio*/
+		boolean result = service.login("nombre1", "123456");
+		
+		/*Resultado*/
+		assertThat(result, is(false));
+		
+	}
+	@Test
+	void loginPasswordincorrectotest() {
 		/*Inicialización*/
 		dao = mock(IDAOUser.class);
 		service =  new LoginService (dao);
@@ -23,8 +38,7 @@ class LoginServiceTest {
 		boolean result = service.login("nombre1", "123456");
 		
 		/*Resultado*/
-		assertThat(result, is(true));
+		assertThat(result, is(false));
 		
 	}
-	
 }
