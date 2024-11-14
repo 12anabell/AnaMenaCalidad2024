@@ -57,28 +57,6 @@ class UserServiceTest {
 		assertThat("nuevoNombre",is(result.getName()));
 	}
 
-	/* @Test
-	    void deleteUserTest_Success() {
-	        int userIdToDelete = 1; 
-	        
-	        when(dao.deleteById(userIdToDelete)).thenReturn(true);
-
-	        boolean result = servicio.deleteUser(userIdToDelete);
-
-	        assertThat(result, is(true));
-	    }
-	 @Test
-	    void deleteUserTest() {
-	        
-	        int userIdToDelete = 2;  
-	        
-	        when(dao.deleteById(userIdToDelete)).thenReturn(false);
-
-	        boolean result = servicio.deleteUser(userIdToDelete);
-
-	        assertThat(result, is(false));
-	    }
-
 	    @Test
 	    void createUserTest() {
 	        String name = "usuario1";
@@ -88,28 +66,50 @@ class UserServiceTest {
 	        User result = servicio.createUser(name, email, password);
 
 	        assertThat(result, is(nullValue())); 
-	    }*/
+	    }
 
 	    @Test 
 	    void findUserByEmailTest() {
-	    	User resultadoEsperado = new User("name", "email", "password");
-	    	when(dao.findUserByEmail("email")).thenReturn(resultadoEsperado);
+	    	User usuario = new User("name", "email", "password");
+	    	usuario.setId(1);
+	    	when(dao.findUserByEmail("email")).thenReturn(usuario);
 	    	
 	    	User resultado = servicio.findUserByEmail("email");
-	    	assertThat(resultado, is(resultadoEsperado.getName()));
-	    	assertThat(resultado, is(resultadoEsperado.getEmail()));
-	    	assertThat(resultado, is(resultadoEsperado.getPassword()));
+	    	assertThat(resultado.getEmail(), is(resultado.getEmail()));
+	    	assertThat(resultado.getEmail(), is(resultado.getName()));
+	
 	    	
 	    }
 	    @Test 
 	    void findUserById() {
-	    	User resultadoEsperado = new User("name", "email", "password");
-	    	when(dao.findById(1)).thenReturn(resultadoEsperado);
+	    	User usuario = new User("name", "email", "password");
+	    	when(dao.findById(1)).thenReturn(usuario);
 	    	
 	    	int id = 1;
 	    	User resultado = servicio.findUserById(id);
-	    	assertThat(resultado, is(resultadoEsperado.getId()));
+	    	assertThat(resultado.getName(), is("name"));
+	    	assertThat(resultado.getEmail(),is("email"));
+	    	assertThat(resultado.getPassword(), is("password"));
 	    }
+	    @Test
+		void testDeleteUser() {
+		    User usuario = new User("nombre1", "email", "password");
+		    usuario.setId(1);
+		    baseDatos.put(usuario.getId(), usuario);
+		    
+		    when(dao.findById(1)).thenReturn(usuario);
+		    when(dao.deleteById(1)).thenAnswer(new Answer<Boolean>() {
+		        public Boolean answer(InvocationOnMock invocation) {
+		            int id = (Integer) invocation.getArguments()[0];
+		            return baseDatos.remove(id) != null;
+		        }
+		    });
+		    
+		    boolean result = servicio.deleteUser(1);
+		    
+		    assertThat(result, is(true));
+		    assertThat(baseDatos.containsKey(1), is(false));
+		}
 
 }
 
