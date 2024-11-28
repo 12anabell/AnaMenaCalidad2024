@@ -132,7 +132,7 @@ public class DAOUserSQLite implements IDAOUser {
 			rs = preparedStatement.executeQuery();
 
 			// Obtain the pointer to the data in generated table
-			rs.next();
+			if (rs.next()){
 
 			int id = rs.getInt(1);
 			String username  = rs.getString(2);
@@ -152,9 +152,11 @@ public class DAOUserSQLite implements IDAOUser {
 			System.out.println("Email: " + result.getEmail());
 			System.out.println("Tipo: " + result.isLogged() + "\n");
 			// Close connection with the database
+			}
 			connection.close();
 			rs.close();
 			preparedStatement.close();
+			
 
 		} catch (Exception e) {
 			System.out.println(e);
