@@ -26,8 +26,12 @@ jobs:
           command: mvn -B -DskipTests clean package
       # Then run your tests!
       - run:
-        name: Hola
-        command: echo "Hola mundo"
+         name: Hola
+         command: echo "Hola mundo"
+
+      - run:
+          name: Hola
+          command: echo "Hola mundo"
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
