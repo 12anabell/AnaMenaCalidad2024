@@ -28,10 +28,13 @@ jobs:
       - run:
          name: Hola
          command: echo "Hola mundo"
-
       - run:
-          name: Hola
-          command: echo "Hola mundo"
+         name: Calculadora
+         command: mvn -CalculadoraTest test 
+
+  #    - run:
+  #        name: Test
+  #       command: mvn test
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
