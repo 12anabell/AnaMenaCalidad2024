@@ -1,4 +1,4 @@
-package com.example;
+package com.fca.calidad.funcionales;
 
 import java.util.regex.Pattern;
 import java.util.concurrent.TimeUnit;
@@ -8,10 +8,14 @@ import static org.hamcrest.CoreMatchers.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 import org.apache.commons.io.FileUtils;
 import java.io.File;
+import java.time.Duration;
 
-public class UntitledTestCase {
+public class Crud {
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
@@ -19,7 +23,8 @@ public class UntitledTestCase {
   JavascriptExecutor js;
   @Before
   public void setUp() throws Exception {
-    System.setProperty("webdriver.chrome.driver", "");
+   // System.setProperty("webdriver.chrome.driver", "");
+	  WebDriverManager.chromedriver().setup();
     driver = new ChromeDriver();
     baseUrl = "https://www.google.com/";
     driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
@@ -28,32 +33,31 @@ public class UntitledTestCase {
 
   @Test
   public void testUntitledTestCase() throws Exception {
-    driver.get(baseUrl + "chrome://newtab/");
-    driver.get("https://www.google.com/search?q=mern+crud&rlz=1C1GCEU_esMX1095MX1096&oq=mern+crud&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIICAEQABgWGB4yCAgCEAAYFhgeMggIAxAAGBYYHjIICAQQABgWGB4yCAgFEAAYFhgeMggIBhAAGBYYHjIICAcQABgWGB4yCAgIEAAYFhgeMggICRAAGBYYHtIBCTMyNzBqMWoxNagCCLACAQ&sourceid=chrome&ie=UTF-8");
     driver.get("https://mern-crud-mpfr.onrender.com/");
     driver.findElement(By.xpath("//div[@id='root']/div/div[2]/button")).click();
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
     driver.findElement(By.name("name")).click();
     driver.findElement(By.name("name")).clear();
-    driver.findElement(By.name("name")).sendKeys("Ana Mena");
+    driver.findElement(By.name("name")).sendKeys("Ana Mens");
     driver.findElement(By.name("email")).click();
     driver.findElement(By.name("email")).clear();
     driver.findElement(By.name("email")).sendKeys("belenmena06@gmail.com");
     driver.findElement(By.name("age")).clear();
     driver.findElement(By.name("age")).sendKeys("23");
     driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Woah!'])[1]/following::button[1]")).click();
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Stop'])[1]/following::div[1]")).click();
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+    driver.findElement(By.xpath("//i")).click();
     driver.findElement(By.xpath("//div[@id='root']/div/div[2]/table/tbody/tr/td[5]/button")).click();
-    driver.findElement(By.name("name")).click();
-    driver.findElement(By.name("name")).click();
-    driver.findElement(By.name("name")).clear();
-    driver.findElement(By.name("name")).sendKeys("Ana Belén Mena");
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
     driver.findElement(By.name("name")).click();
     driver.findElement(By.name("name")).clear();
-    driver.findElement(By.name("name")).sendKeys("Ana Belén Mena Martínez");
+    driver.findElement(By.name("name")).sendKeys("Ana Mena");
     driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Woah!'])[1]/following::button[1]")).click();
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Stop'])[1]/following::div[1]")).click();
+    driver.findElement(By.xpath("//i")).click();
     driver.findElement(By.xpath("//div[@id='root']/div/div[2]/table/tbody/tr/td[5]/button[2]")).click();
     driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Ana Mena'])[2]/following::button[1]")).click();
+    assertTrue(driver.findElement(By.cssSelector("BODY")).getText().matches("^[\\s\\S]*Yupii[\\s\\S]*$"));
+    
   }
 
   @After
@@ -98,3 +102,4 @@ public class UntitledTestCase {
     }
   }
 }
+
