@@ -26,6 +26,8 @@ jobs:
           command: mvn -B -DskipTests clean package
       # Then run your tests!
       - run:
+        name: Hola
+        command: echo "Hola mundo"
           name: Test
           command: mvn test
 
