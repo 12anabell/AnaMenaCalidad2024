@@ -42,16 +42,12 @@ class CalculadoraTest {
 		assertThat(resEsperado, is(resEjecucion));
 	}
 	@Test
-	void multiplicacion2numerosTest() {
-	/*	double num1 = 10;
-		double num2 = 4;*/
-		double resEsperado = 40;
-		Calculadora calculadora = new Calculadora();
-		
-		double resEjecucion = calculadora.multiplica(num1, num2);
-		
-		assertThat(resEsperado, is(resEjecucion));
-	}
+    void multiplicacion2numerosTest() {
+        double resEsperado = 10; // Corrige el valor esperado
+        double resEjecucion = calculadora.multiplica(num1, num2);
+
+        assertThat(resEjecucion, is(resEsperado));
+    }
 	@Test
 	void division2numerosTest() {
 	/*	double num1 = 10;
