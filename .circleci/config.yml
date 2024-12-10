@@ -30,7 +30,7 @@ jobs:
          command: echo "Hola mundo"
       - run:
          name: Calculadora
-         command: mvn -Dtest=CalculadoraTest test 
+         command: mvn -CalculadoraTest test 
 
   #    - run:
   #        name: Test
