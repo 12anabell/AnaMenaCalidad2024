@@ -26,11 +26,14 @@ jobs:
           command: mvn -B -DskipTests clean package
       # Then run your tests!
       - run:
-          name: Hola
-          command: echo "Hola mundo"
+         name: Hola
+         command: echo "Hola mundo"
       - run:
-          name: Calculadora
-          command: mvn -Dtest=CalculadoraTest test 
+         name: Calculadora
+         command: mvn -Dtest=CalculadoraTest test
+      - run:
+         name: Ejecutando pruebas mockito
+         command: mvn -Dtest=com.fca.calidad.servicio.UserServiceTest test
 
   #    - run:
   #        name: Test
