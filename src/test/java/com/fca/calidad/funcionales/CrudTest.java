@@ -1,4 +1,4 @@
-package com.fca.calidad.funcionales;
+/*package com.fca.calidad.funcionales;
 
 import java.util.regex.Pattern;
 import java.util.concurrent.TimeUnit;
@@ -121,5 +121,5 @@ private String closeAlertAndGetItsText() {
   }
 }
 }
-   
+   */
    

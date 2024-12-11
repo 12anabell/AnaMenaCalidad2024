@@ -1,4 +1,4 @@
-package com.fca.calidad.maven;
+package com.fca.calidad.unitaria;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
