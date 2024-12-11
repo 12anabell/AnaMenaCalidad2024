@@ -6,6 +6,7 @@ import static org.hamcrest.Matchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -57,29 +58,30 @@ class UserServiceTest {
 		assertThat("nuevoNombre",is(result.getName()));
 	}
 
+	@Test
+	 void createUserTest() {
+       User nuevoUsuario = new User("nombre", "email", "password");
+       when(dao.findUserByEmail("email")).thenReturn(null);
+       when(dao.save(any(User.class))).thenReturn(1); 
+       User resultado = servicio.createUser("nombre", "email", "password");
+       assertThat(resultado.getName(), is("nombre"));
+       assertThat(resultado.getEmail(), is("email"));
+       assertThat(resultado.getPassword(), is("password"));
+       assertThat(resultado.getId(), is(1));
+   }	
+
 	    @Test
-	    void createUserTest() {
-	        String name = "usuario1";
-	        String email = "example@example.com";
-	        String password = "123456789"; 
+		public void buscarEmailTest () {
+			User resultadoEsperado = new User("name" , "email" , "password");
+			when(dao.findUserByEmail("email")).thenReturn(resultadoEsperado);
+			
+			User resultado = servicio.findUserByEmail("email");
 
-	        User result = servicio.createUser(name, email, password);
-
-	        assertThat(result, is(nullValue())); 
-	    }
-
-	    @Test 
-	    void findUserByEmailTest() {
-	    	User usuario = new User("name", "email", "password");
-	    	usuario.setId(1);
-	    	when(dao.findUserByEmail("email")).thenReturn(usuario);
-	    	
-	    	User resultado = servicio.findUserByEmail("email");
-	    	assertThat(resultado.getEmail(), is(resultado.getEmail()));
-	    	assertThat(resultado.getEmail(), is(resultado.getName()));
-	
-	    	
-	    }
+			assertThat(resultado.getName(), is(resultadoEsperado.getName()));
+			assertThat(resultado.getEmail(), is(resultadoEsperado.getEmail()));
+			assertThat(resultado.getPassword(), is(resultadoEsperado.getPassword()));
+			
+		}
 	    @Test 
 	    void findUserById() {
 	    	User usuario = new User("name", "email", "password");
@@ -110,23 +112,27 @@ class UserServiceTest {
 		    assertThat(result, is(true));
 		    assertThat(baseDatos.containsKey(1), is(false));
 		}
+	    @Test
+		 void findAllUsersTest() {
+		     User usuario1 = new User("Maria", "ana@gmail.com", "contra123");
+		     usuario1.setId(1);
+		     baseDatos.put(usuario1.getId(), usuario1);
+	 
+		     User usuario2 = new User("Carlos", "ana@gmail.com", "contra456");
+		     usuario2.setId(2);
+		     baseDatos.put(usuario2.getId(), usuario2);
+	 
+		     when(dao.findAll()).thenReturn(baseDatos.values().stream().toList());
+	 
+		     List<User> result = servicio.findAllUsers();
+	 
+		     assertThat(result, hasSize(2));
+		     assertThat(result, containsInAnyOrder(usuario1, usuario2));
+	 
+		     // Caso sin usuarios
+		     when(dao.findAll()).thenReturn(List.of());
+		     List<User> emptyResult = servicio.findAllUsers();
+		     assertThat(emptyResult, is(empty()));
+		 }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
