@@ -66,14 +66,3 @@ class CalculadoraTest {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
