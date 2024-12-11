@@ -19,7 +19,7 @@ import java.io.File;
 import java.time.Duration;
  
  
-public class EliminarTest {
+public class BorrarTest {
 	  private WebDriver driver;
 	  private String baseUrl;
 	  private boolean acceptNextAlert = true;
@@ -41,7 +41,7 @@ public class EliminarTest {
 	    driver.findElement(By.xpath("//div[@id='root']/div/div[2]/table/tbody/tr/td[5]/button[2]")).click();
 	  //  driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Pruebab2'])[2]/following::button[1]")).click();
 	    //Warning: assertTextNotPresent may require manual changes
-	    assertFalse(driver.findElement(By.cssSelector("BODY")).getText().matches("^[\\s\\S]*Ejercicio[\\s\\S]*$"));
+	    assertFalse(driver.findElement(By.cssSelector("BODY")).getText().matches("^[\\s\\S]*Pruebab2[\\s\\S]*$"));
 	  }
  
 	  @After

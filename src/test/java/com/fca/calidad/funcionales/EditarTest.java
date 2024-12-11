@@ -1,5 +1,5 @@
 package com.fca.calidad.funcionales;
- 
+
 import static org.junit.Assert.*;
  
 import org.junit.Test;
@@ -37,7 +37,7 @@ import java.time.Duration;
 			  @Test
 			  public void testEditar() throws Exception {
 			      driver.get(baseUrl + "chrome://newtab/");
-			      Thread.sleep(1000); 
+			      Thread.sleep(1000); // Pausa de 1 segundo
  
 			      driver.get(baseUrl + "chrome://newtab/");
 			      Thread.sleep(1000);
@@ -57,7 +57,7 @@ import java.time.Duration;
 			      driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Woah!'])[1]/following::button[1]")).click();
 			      Thread.sleep(1000);
  
-			
+			      // Verifica el texto esperado en la página
 			      assertTrue(driver.findElement(By.cssSelector("BODY")).getText().matches("^[\\s\\S]*Successfully updated![\\s\\S]*$"));
 			  }
  

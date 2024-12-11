@@ -1,7 +1,7 @@
 package com.fca.calidad.funcionales;
- 
+
 import static org.junit.Assert.assertTrue;
- 
+
 import org.junit.Test;
 import java.util.regex.Pattern;
 import java.util.concurrent.TimeUnit;
@@ -43,17 +43,17 @@ public class AgregarTest {
  
 	      driver.findElement(By.name("name")).click();
 	      driver.findElement(By.name("name")).clear();
-	      driver.findElement(By.name("name")).sendKeys("Ana Mens");
+	      driver.findElement(By.name("name")).sendKeys("Pruebaagregar");
 	      Thread.sleep(1000);
  
 	      driver.findElement(By.name("email")).click();
 	      driver.findElement(By.name("email")).clear();
-	      driver.findElement(By.name("email")).sendKeys("ana@gmail.com");
+	      driver.findElement(By.name("email")).sendKeys("agregar@gmail.com");
 	      Thread.sleep(1000);
  
 	      driver.findElement(By.name("age")).click();
 	      driver.findElement(By.name("age")).clear();
-	      driver.findElement(By.name("age")).sendKeys("23");
+	      driver.findElement(By.name("age")).sendKeys("22");
 	      Thread.sleep(1000);
  
 	      driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Gender'])[2]/following::div[2]")).click();
@@ -65,6 +65,7 @@ public class AgregarTest {
 	      driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Woah!'])[1]/following::button[1]")).click();
 	      Thread.sleep(1000);
  
+	      // Verifica el texto esperado en la página
 	      assertTrue(driver.findElement(By.cssSelector("BODY")).getText().matches("^[\\s\\S]*Successfully added![\\s\\S]*$"));
 	  }
  
