@@ -33,7 +33,7 @@ jobs:
       - run:
           name: Ejecutando pruebas mockito
           command: mvn -Dtest=com.fca.calidad.servicio.UserServiceTest test
-      - run:
+#      - run:
 #          name: Ejecutando pruebas katalon
 #         command: mvn -Dtest=com.fca.calidad.funcionales.AgregarTest,com.fca.calidad.funcionales.BorrarTest,com.fca.calidad.funcionales.EditarTest test
       # Then run your tests!
