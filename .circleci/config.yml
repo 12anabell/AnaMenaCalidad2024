@@ -29,8 +29,8 @@ jobs:
           name: Hola
           command: echo "Hola mundo"
       - run:
-         name: Calculadora
-        command: mvn -Dtest=CalculadoraTest test
+          name: Calculadora
+          command: mvn -Dtest=CalculadoraTest test
       - run:
           name: Ejecutando pruebas mockito
           command: mvn -Dtest=com.fca.calidad.servicio.UserServiceTest test
